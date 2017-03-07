@@ -19,7 +19,7 @@ const images = [{
 
 Given the variation in listing for the different views, you're probably better off 
 creating different list view components for each view type (versus having a single list view
-that toggles the display component. Something like:
+that toggles the display component). Something like:
 
 ```
 ThumbnailList
