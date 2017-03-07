@@ -13,8 +13,9 @@ const makeMeCentered = {
 
 
 ReactDOM.render(
-  <div style={makeMeCentered}>
-    {GalleryApp}
-  </div>,
+  <div id='root'>
+    < h1 > Welcome to the Gallery</h1 >
+    <GalleryApp />
+  </div >,
   document.getElementById('root')
 );
