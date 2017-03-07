@@ -7,10 +7,11 @@ and provide a way for users to add a new image.
 ## Add Lists of images
 
 First step is to refactor your components to display all the images in an images array. You can still have hard-coded
-initial data of your image(s) from lab one, but in an array:
+initial data of your image(s) from lab one, but you'll need to add an id (you could use `new Date()`) and put them into an array:
 
 ```js
 const images = [{ 
+  id: new Date()
   title: 'Cute Bunny',
   description: 'Isn\'t it fuzzy-wuzzy cutest thing you\'ve ever seen?',
   url: 'http://f.cl.ly/items/3g3J1G0w122M360w380O/3726490195_f7cc75d377_o.jpg'
@@ -38,7 +39,9 @@ GalleryDisplay
 ## Bonus
 
 Allow the user to select (up to you how, an edit button, or click on image, etc) an existing image
-and then edit it. Offer the user the option to cancel and don't update the list until the user clicks
+and then edit it. You can either add an edit form component, resuse the add component, or offer inline editiong.
+
+If you use a form, offer the user the option to cancel and don't update the list until the user clicks
 Save or some similar action.
 
 ## Testing
