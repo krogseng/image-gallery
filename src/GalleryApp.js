@@ -12,28 +12,41 @@ function ImageView(props) {
     } else if (props.viewSelected === 'thumbnail') {
         return (<Thumbnail />)
     } else if (props.viewSelected === 'gallery') {
-        return (<Gallery />)
+        return (<Gallery galleryImages={galleryImages} />)
     }
 }
 
 function ListImage() {
     return (
-        <p>list images here</p>
+        <ul>
+            <li>Image information goes here</li>
+            <li>Maybe the description goes here</li>
+            <li>and the image url would go around here</li>
+        </ul>
 
     );
 }
 
 function Thumbnail() {
     return (
-        <img alt="this is the cutest bunny" src='http://f.cl.ly/items/3g3J1G0w122M360w380O/3726490195_f7cc75d377_o.jpg' height='100px' width='100px' />
+        <p>
+            <img alt="this is the cutest bunny" src='http://f.cl.ly/items/3g3J1G0w122M360w380O/3726490195_f7cc75d377_o.jpg' height='100px' width='100px' />
+            <caption>This is the image caption</caption>
+        </p>
     );
 }
 
-function Gallery() {
+function Gallery(props) {
+    const showImage = props.galleryImages.map(image => {
+        return (
+            <img alt="this is the cutest bunny" src={image.url} />
+        )
+    })
     return (
-        <img alt="this is the cutest bunny" src='http://f.cl.ly/items/3g3J1G0w122M360w380O/3726490195_f7cc75d377_o.jpg' />
+        <div>{showImage}</div>
     )
 }
+
 function ViewSelect(props) {
     return (
         <div>
@@ -53,7 +66,9 @@ export default class GalleryApp extends Component {
         this.onListImage = this.onListImage.bind(this);
         this.onThumbnail = this.onThumbnail.bind(this);
         this.onGallery = this.onGallery.bind(this);
-
+        return (
+            <img alt="this is the cutest bunny" src='http://f.cl.ly/items/3g3J1G0w122M360w380O/3726490195_f7cc75d377_o.jpg' />
+        )
     }// end constructor
     onListImage() {
         this.setState({ viewChoice: 'listImage' })
