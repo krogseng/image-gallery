@@ -29,10 +29,10 @@ function ListImage() {
 
 function Thumbnail() {
     return (
-        <p>
+        <div>
             <img alt="this is the cutest bunny" src='http://f.cl.ly/items/3g3J1G0w122M360w380O/3726490195_f7cc75d377_o.jpg' height='100px' width='100px' />
-            <caption>This is the image caption</caption>
-        </p>
+            <p>This is the image caption</p>
+        </div>
     );
 }
 
@@ -40,7 +40,7 @@ function Gallery(props) {
     const showImage = props.galleryImages.map(image => {
         return (
             <img alt="this is the cutest bunny" src={image.url} />
-        )
+        );
     })
     return (
         <div>{showImage}</div>
@@ -66,9 +66,7 @@ export default class GalleryApp extends Component {
         this.onListImage = this.onListImage.bind(this);
         this.onThumbnail = this.onThumbnail.bind(this);
         this.onGallery = this.onGallery.bind(this);
-        return (
-            <img alt="this is the cutest bunny" src='http://f.cl.ly/items/3g3J1G0w122M360w380O/3726490195_f7cc75d377_o.jpg' />
-        )
+
     }// end constructor
     onListImage() {
         this.setState({ viewChoice: 'listImage' })
