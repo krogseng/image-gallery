@@ -40,7 +40,7 @@ function Thumbnail(props) {
 function Gallery(props) {
     return (
         <div>
-            <img alt="this is the cutest bunny" src={props.image.url} />
+            <img alt={props.image.title} src={props.image.url} />
         </div>
     );
 }
