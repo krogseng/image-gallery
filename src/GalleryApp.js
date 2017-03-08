@@ -6,26 +6,28 @@ let image = {
     url: 'http://f.cl.ly/items/3g3J1G0w122M360w380O/3726490195_f7cc75d377_o.jpg'
 };
 
+const GALLERY_TYPE = 'gallery';
+const THUMBNAIL_TYPE = 'thumbnail';
+const LISTIMAGE_TYPE = 'listImage';
 
+// not real sure how the outputs works, but it does
 function ImageView(props) {
     const outputs = {
-        'gallery': Gallery,
-        'thumbnail': Thumbnail,
-        'listImage': ListImage
+        [GALLERY_TYPE]: Gallery,
+        [THUMBNAIL_TYPE]: Thumbnail,
+        [LISTIMAGE_TYPE]: ListImage
     }
 
     const ComponentToRender = outputs[props.viewSelected];
 
-    if (props.viewSelected === 'listImage') {
-
-        return (<ListImage image={image} />)
-    } else if (props.viewSelected === 'thumbnail') {
-        return (<Thumbnail image={image} />)
-    } else if (props.viewSelected === 'gallery') {
-        return (<Gallery image={image} />)
-    } else {
-        return (<div>Click to start</div>)
-    }
+    return (
+        <div>          
+            {ComponentToRender
+                ? <ComponentToRender image={image} />
+                : 'Click a button to view images'
+            }
+        </div>
+    );
 }
 
 
@@ -63,9 +65,9 @@ function Gallery(props) {
 function ViewSelect(props) {
     return (
         <div>
-            <button onClick={() => props.handleClick('listImage')}>  List Images</button>
-            <button onClick={() => props.handleClick('thumbnail')}> Thumbnail View</button>
-            <button onClick={() => props.handleClick('gallery')}> Gallery View</button>
+            <button onClick={() => props.handleClick(LISTIMAGE_TYPE)}>  List Images</button>
+            <button onClick={() => props.handleClick(THUMBNAIL_TYPE)}> Thumbnail View</button>
+            <button onClick={() => props.handleClick(GALLERY_TYPE)}> Gallery View</button>
         </div>
     );
 };
@@ -85,6 +87,7 @@ export default class GalleryApp extends Component {
     handleClick(value) {
         this.setState({ viewSelected: value })
     }
+
 
     render() {
         return (
