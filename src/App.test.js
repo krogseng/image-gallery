@@ -1,7 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+//import Link from '../Link.react';
 import App from './App';
-import renderer from 'enzyme';
+import GalleryApp from './GalleryApp';
+import renderer from 'react-test-renderer';
 
 
 it('renders the app without crashing', () => {
@@ -9,7 +11,4 @@ it('renders the app without crashing', () => {
   ReactDOM.render(<App />, div);
 });
 
-it('consistently renders from List Image button', () => {
-  const tree = renderer.create(<App />).toJSON();
-  expect(tree).toMatchSnapshot();
-});
+
