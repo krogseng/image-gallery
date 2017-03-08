@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 
-let galleryImages = [{
+let image = {
     title: 'Cute Bunny',
     description: 'Isn\'t it fuzzy-wuzzy cutest thing you\'ve ever seen?',
     url: 'http://f.cl.ly/items/3g3J1G0w122M360w380O/3726490195_f7cc75d377_o.jpg'
-}];
+};
 
 function ImageView(props) {
     if (props.viewSelected === 'listImage') {
@@ -12,7 +12,7 @@ function ImageView(props) {
     } else if (props.viewSelected === 'thumbnail') {
         return (<Thumbnail />)
     } else if (props.viewSelected === 'gallery') {
-        return (<Gallery galleryImages={galleryImages} />)
+        return (<Gallery image={image} />)
     }
 }
 
@@ -37,14 +37,11 @@ function Thumbnail() {
 }
 
 function Gallery(props) {
-    const showImage = props.galleryImages.map(image => {
-        return (
-            <img alt="this is the cutest bunny" src={image.url} />
-        );
-    })
     return (
-        <div>{showImage}</div>
-    )
+        <div>
+            <img alt="this is the cutest bunny" src={image.url} />
+        </div>
+    );
 }
 
 function ViewSelect(props) {
