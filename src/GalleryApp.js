@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import Thumbnail from './Thumbnail';
+import Gallery from './Gallery';
 
 let image = {
     title: 'Cute Bunny',
@@ -21,7 +23,7 @@ function ImageView(props) {
     const ComponentToRender = outputs[props.viewSelected];
 
     return (
-        <div>          
+        <div>
             {ComponentToRender
                 ? <ComponentToRender image={image} />
                 : 'Click a button to view images'
@@ -30,37 +32,6 @@ function ImageView(props) {
     );
 }
 
-
-
-function ListImage(props) {
-    return (
-        <div>
-            <h2>Available Images</h2>
-            <ul>
-                <li>Title: {props.image.title}</li>
-                <li><a href={props.image.url}>Link to Image </a></li>
-                <li>Description: {props.image.description}</li>
-            </ul>
-        </div>
-    );
-}
-
-function Thumbnail(props) {
-    return (
-        <div>
-            <img alt={props.image.title} src={props.image.url} height='100px' width='100px' />
-            <h4>{props.image.title}</h4>
-        </div>
-    );
-}
-
-function Gallery(props) {
-    return (
-        <div>
-            <img alt={props.image.title} src={props.image.url} />
-        </div>
-    );
-}
 
 function ViewSelect(props) {
     return (
