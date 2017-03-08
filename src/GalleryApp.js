@@ -8,30 +8,31 @@ let image = {
 
 function ImageView(props) {
     if (props.viewSelected === 'listImage') {
-        return (<ListImage />)
+        return (<ListImage image={image} />)
     } else if (props.viewSelected === 'thumbnail') {
-        return (<Thumbnail />)
+        return (<Thumbnail image={image} />)
     } else if (props.viewSelected === 'gallery') {
         return (<Gallery image={image} />)
     }
 }
 
-function ListImage() {
+function ListImage(props) {
     return (
-        <ul>
-            <li>Image information goes here</li>
-            <li>Maybe the description goes here</li>
-            <li>and the image url would go around here</li>
-        </ul>
-
+        <div>
+            <h2>Available Images</h2>
+            <ul>
+                <li>Title: {props.image.title}</li>
+                <li><a href={props.image.url}>Link to Image </a></li>
+                <li>Description: {props.image.description}</li>
+            </ul>
+        </div>
     );
 }
 
-function Thumbnail() {
+function Thumbnail(props) {
     return (
         <div>
-            <img alt="this is the cutest bunny" src='http://f.cl.ly/items/3g3J1G0w122M360w380O/3726490195_f7cc75d377_o.jpg' height='100px' width='100px' />
-            <p>This is the image caption</p>
+            <img alt={props.image.title} src={props.image.url} />
         </div>
     );
 }
@@ -39,7 +40,7 @@ function Thumbnail() {
 function Gallery(props) {
     return (
         <div>
-            <img alt="this is the cutest bunny" src={image.url} />
+            <img alt="this is the cutest bunny" src={props.image.url} />
         </div>
     );
 }
