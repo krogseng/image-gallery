@@ -1,21 +1,14 @@
 import React from 'react';
-
-
+import views from './viewTypes';
 
 // not real sure how the outputs works, but it does
-function ImageView(props) {
-    const outputs = {
-        [GALLERY_TYPE]: Gallery,
-        [THUMBNAIL_TYPE]: Thumbnail,
-        [LISTIMAGE_TYPE]: ListImage
-    }
-
-    const ComponentToRender = outputs[props.viewSelected];
+export default function ImageView(props) {
+    const ViewComponent = views[props.viewSelected];
 
     return (
         <div>
-            {ComponentToRender
-                ? <ComponentToRender image={image} />
+            {ViewComponent
+                ? <ViewComponent image={props.image} />
                 : 'Click a button to view images'
             }
         </div>
