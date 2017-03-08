@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
-import renderer from 'react-test-renderer';
+import renderer from 'enzyme';
 
 
 it('renders the app without crashing', () => {

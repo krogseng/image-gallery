@@ -6,15 +6,29 @@ let image = {
     url: 'http://f.cl.ly/items/3g3J1G0w122M360w380O/3726490195_f7cc75d377_o.jpg'
 };
 
+
 function ImageView(props) {
+    const outputs = {
+        'gallery': Gallery,
+        'thumbnail': Thumbnail,
+        'listImage': ListImage
+    }
+
+    const ComponentToRender = outputs[props.viewSelected];
+
     if (props.viewSelected === 'listImage') {
+
         return (<ListImage image={image} />)
     } else if (props.viewSelected === 'thumbnail') {
         return (<Thumbnail image={image} />)
     } else if (props.viewSelected === 'gallery') {
         return (<Gallery image={image} />)
+    } else {
+        return (<div>Click to start</div>)
     }
 }
+
+
 
 function ListImage(props) {
     return (
@@ -32,7 +46,8 @@ function ListImage(props) {
 function Thumbnail(props) {
     return (
         <div>
-            <img alt={props.image.title} src={props.image.url} />
+            <img alt={props.image.title} src={props.image.url} height='100px' width='100px' />
+            <h4>{props.image.title}</h4>
         </div>
     );
 }
@@ -48,9 +63,9 @@ function Gallery(props) {
 function ViewSelect(props) {
     return (
         <div>
-            <button onClick={() => props.onListImage()}>  List Images</button>
-            <button onClick={() => props.onThumbnail()}> Thumbnail View</button>
-            <button onClick={() => props.onGallery()}> Gallery View</button>
+            <button onClick={() => props.handleClick('listImage')}>  List Images</button>
+            <button onClick={() => props.handleClick('thumbnail')}> Thumbnail View</button>
+            <button onClick={() => props.handleClick('gallery')}> Gallery View</button>
         </div>
     );
 };
@@ -59,31 +74,23 @@ export default class GalleryApp extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            viewChoice: 'listImage'
+            viewSelected: 'listImage'
+
         }
-        this.onListImage = this.onListImage.bind(this);
-        this.onThumbnail = this.onThumbnail.bind(this);
-        this.onGallery = this.onGallery.bind(this);
+        this.handleClick = this.handleClick.bind(this);
+
 
     }// end constructor
-    onListImage() {
-        this.setState({ viewChoice: 'listImage' })
-    }
-    onThumbnail() {
-        this.setState({ viewChoice: 'thumbnail' })
-    }
-    onGallery() {
-        this.setState({ viewChoice: 'gallery' })
+
+    handleClick(value) {
+        this.setState({ viewSelected: value })
     }
 
     render() {
         return (
             <div>
-                <ViewSelect onListImage={this.onListImage}
-                    onThumbnail={this.onThumbnail}
-                    onGallery={this.onGallery}
-                />
-                <ImageView viewSelected={this.state.viewChoice} classname='viewer' />
+                <ViewSelect handleClick={this.handleClick} />
+                <ImageView viewSelected={this.state.viewSelected} classname='viewer' />
             </div>
         );
     }
