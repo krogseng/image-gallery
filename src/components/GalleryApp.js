@@ -2,13 +2,7 @@ import React, { Component } from 'react';
 import views from './viewTypes';
 import ImageView from './ImageView';
 
-let image = {
-    title: 'Cute Bunny',
-    description: 'Isn\'t it fuzzy-wuzzy cutest thing you\'ve ever seen?',
-    url: 'http://f.cl.ly/items/3g3J1G0w122M360w380O/3726490195_f7cc75d377_o.jpg'
-};
-
-
+import images from './images';
 
 function ViewSelect(props) {
     return (
@@ -25,15 +19,48 @@ function ViewSelect(props) {
     );
 };
 
+
+function AddImage(props) {
+    return (
+        <form onSubmit={(e) => {
+            e.preventDefault();
+            const form = e.target;
+
+            const els = form.elements;
+            const image = {
+                id: new Date().getTime(),
+                title: els.title.value,
+                description: els.description.value,
+                url: els.url.value
+            }
+
+            props.onAdd(image);
+            form.reset();
+        }}>
+
+            <label>Title
+                <input name='title' />
+            </label>
+            <label>Description
+                <input name='description' />
+            </label>
+            <label>URL
+                <input name='url' />
+            </label>
+            <button type='submit'>Add </button>
+        </form>
+    );
+}
+
 export default class GalleryApp extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            viewSelected: 'listImage'
-
+            viewSelected: 'thumbnail',
+            images: images,
         }
         this.handleClick = this.handleClick.bind(this);
-
+        this.onAdd = this.onAdd.bind(this);
 
     }// end constructor
 
@@ -41,12 +68,19 @@ export default class GalleryApp extends Component {
         this.setState({ viewSelected: value })
     }
 
+    onAdd(image) {
+        this.setState({
+            images: this.state.images.concat(image),
+        })
+    }
 
     render() {
         return (
             <div>
+                <AddImage onAdd={this.onAdd} />
                 <ViewSelect handleClick={this.handleClick} />
-                <ImageView viewSelected={this.state.viewSelected} classname='viewer' image={image} />
+
+                <ImageView viewSelected={this.state.viewSelected} classname='viewer' images={this.state.images} />
             </div>
         );
     }

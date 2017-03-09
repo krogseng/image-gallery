@@ -8,9 +8,10 @@ export default function ImageView(props) {
     return (
         <div>
             {ViewComponent
-                ? <ViewComponent image={props.image} />
+                ? <ViewComponent images={props.images} />
                 : 'Click a button to view images'
             }
         </div>
     );
 }
+
