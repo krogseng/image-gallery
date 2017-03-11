@@ -61,6 +61,7 @@ export default class GalleryApp extends Component {
         }
         this.handleClick = this.handleClick.bind(this);
         this.onAdd = this.onAdd.bind(this);
+        this.onDelete = this.onDelete.bind(this);
 
     }// end constructor
 
@@ -74,13 +75,23 @@ export default class GalleryApp extends Component {
         })
     }
 
+    onDelete(toDelete) {
+        let newImages = this.state.images.filter((image) => {
+            if (image.id !== toDelete.id)
+                return image;
+        })
+        this.setState({
+            images: newImages
+        })
+    }
+
+
     render() {
         return (
             <div>
                 <AddImage onAdd={this.onAdd} />
                 <ViewSelect handleClick={this.handleClick} />
-
-                <ImageView viewSelected={this.state.viewSelected} classname='viewer' images={this.state.images} />
+                <ImageView viewSelected={this.state.viewSelected} className='viewer' images={this.state.images} onDelete={this.onDelete} />
             </div>
         );
     }

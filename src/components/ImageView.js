@@ -8,7 +8,7 @@ export default function ImageView(props) {
     return (
         <div>
             {ViewComponent
-                ? <ViewComponent images={props.images} />
+                ? <ViewComponent images={props.images} onDelete={props.onDelete} />
                 : 'Click a button to view images'
             }
         </div>
