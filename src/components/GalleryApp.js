@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import views from './viewTypes';
 import ImageView from './ImageView';
-
 import images from './images';
+
 
 function ViewSelect(props) {
     return (
-        <div>
+        <div className={'viewSelectors'}>
             {views.types.map(type => (
                 <button
                     key={type.key}
@@ -89,9 +89,9 @@ export default class GalleryApp extends Component {
     render() {
         return (
             <div>
-                <AddImage onAdd={this.onAdd} />
                 <ViewSelect handleClick={this.handleClick} />
-                <ImageView viewSelected={this.state.viewSelected} className='viewer' images={this.state.images} onDelete={this.onDelete} />
+                <AddImage onAdd={this.onAdd} />
+                <ImageView viewSelected={this.state.viewSelected} images={this.state.images} onDelete={this.onDelete} />
             </div>
         );
     }
