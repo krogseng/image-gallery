@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import GalleryApp from './components/GalleryApp';
+import GalleryApp from './components/GalleryApp/GalleryApp';
 import './index.css';
 
 

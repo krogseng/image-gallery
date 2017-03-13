@@ -1,7 +1,7 @@
 
-import MapThumbnails from './MapThumbnails';
-import MapGallery from './MapGallery';
-import MapDetails from './MapDetails';
+import MapThumbnails from '../MapThumbnails/MapThumbnails';
+import MapGallery from '../MapGallery/MapGallery';
+import MapDetails from '../MapDetails/MapDetails';
 
 
 const GALLERY_TYPE = 'gallery';
