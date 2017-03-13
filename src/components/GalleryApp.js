@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import views from './viewTypes';
 import ImageView from './ImageView';
+import AddImage from './AddImage';
 import images from './images';
 
 
@@ -20,7 +21,7 @@ function ViewSelect(props) {
 };
 
 
-function AddImage(props) {
+/*function AddImage(props) {
     return (
         <form onSubmit={(e) => {
             e.preventDefault();
@@ -50,7 +51,7 @@ function AddImage(props) {
             <button type='submit'>Add </button>
         </form>
     );
-}
+}*/
 
 export default class GalleryApp extends Component {
     constructor(props) {

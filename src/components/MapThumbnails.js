@@ -1,6 +1,6 @@
 import React from 'react';
 
-function Thumbnail(props) {
+function DisplayThumbnail(props) {
     return (
         <ul>
             <li className={'mixedGroup'}>
@@ -18,7 +18,7 @@ export default function MapThumbnails(props) {
             <ul>
                 {props.images.map(image => (
                     <li key={image.id}>
-                        <Thumbnail image={image} onDelete={props.onDelete} />
+                        <DisplayThumbnail image={image} onDelete={props.onDelete} />
                     </li>
                 ))}
             </ul>

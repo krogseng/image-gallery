@@ -1,6 +1,6 @@
 import React from 'react'
 
-function Gallery(props) {
+function DisplayGallery(props) {
     return (
         <img alt={props.image.title} src={props.image.url} />
     );
@@ -11,7 +11,7 @@ export default function MapGallery(props) {
         <div className={'mainContent'}>
             {props.images.map(image => (
                 <li key={image.id}>
-                    <Gallery image={image} />
+                    <DisplayGallery image={image} />
                 </li>
             ))}
         </div>
