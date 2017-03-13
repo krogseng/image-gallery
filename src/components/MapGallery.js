@@ -6,7 +6,7 @@ function Gallery(props) {
     );
 }
 
-export default function GalleryView(props) {
+export default function MapGallery(props) {
     return (
         <div className={'mainContent'}>
             {props.images.map(image => (

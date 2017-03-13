@@ -1,6 +1,6 @@
 
 import MapThumbnails from './MapThumbnails';
-import Gallery from './Gallery';
+import MapGallery from './MapGallery';
 import ListImage from './ListImage';
 
 
@@ -9,7 +9,7 @@ const THUMBNAIL_TYPE = 'thumbnail';
 const LISTIMAGE_TYPE = 'listImage';
 
 export default {
-    [GALLERY_TYPE]: Gallery,
+    [GALLERY_TYPE]: MapGallery,
     [THUMBNAIL_TYPE]: MapThumbnails,
     [LISTIMAGE_TYPE]: ListImage,
     types: [
