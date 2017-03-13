@@ -12,7 +12,7 @@ function Thumbnail(props) {
     );
 }
 
-export default function ThumbnailView(props) {
+export default function MapThumbnails(props) {
     return (
         <div className={'mainContent'}>
             <ul>

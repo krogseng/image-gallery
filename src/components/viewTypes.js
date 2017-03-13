@@ -1,5 +1,5 @@
 
-import Thumbnail from './Thumbnail';
+import MapThumbnails from './MapThumbnails';
 import Gallery from './Gallery';
 import ListImage from './ListImage';
 
@@ -10,7 +10,7 @@ const LISTIMAGE_TYPE = 'listImage';
 
 export default {
     [GALLERY_TYPE]: Gallery,
-    [THUMBNAIL_TYPE]: Thumbnail,
+    [THUMBNAIL_TYPE]: MapThumbnails,
     [LISTIMAGE_TYPE]: ListImage,
     types: [
         { key: GALLERY_TYPE, label: 'Gallery View' },
