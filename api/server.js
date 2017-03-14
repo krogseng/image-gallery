@@ -1,19 +1,8 @@
-const express = require('express');
-const app = express();
-const morgan = require('morgan');
-const PORT = 3000;
-//const DB_URI = process.env.MONGODB_URI || 'mongodb://localhost:27017/gallery';
-//const connection = require('./lib/connection');
+const http = require('http');
+const app = require('./lib/app');
+const server = http.createServer(app);
+const PORT = 8000;
 
-const cors = require('cors')();
-
-app.use(morgan('combined'));
-app.use(cors);
-
-
-app.get('/', function (req, res) {
-    res.send('server is listening');
+server.listen(PORT, () => {
+    console.log(' server is listening ', server.address());
 });
-
-app.listen(PORT);
-
