@@ -10,12 +10,32 @@ const request = chai.request(app);
 
 before(() => mongoose.connection.dropDatabase());
 
+let imageA =
+    {
+        title: 'Puppy puppy',
+        description: 'Who could resist?',
+        url: 'http://slco.org/uploadedImages/depot/publicWorks/fAnimal/20090809-IMG_7799-Edit.jpg'
+    };
+
+function saveImage(image) {
+    return request.post('/images')
+        .send(image)
+        .then(res => res.body);
+}
+
 
 describe('Full Stack Backend', () => {
     it('Get should be empty array ', () => {
         return request.get('/images')
             .then(req => req.body)
             .then(images => assert.deepEqual(images, []));
+    });
+
+    it('Add an image to db', () => {
+        return saveImage(imageA)
+            .then(saveImage => {
+                assert.isOk(saveImage._id);
+            });
     });
 
 }); //end describe
