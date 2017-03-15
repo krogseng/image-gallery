@@ -5,6 +5,8 @@ import ViewSelector from '../ViewSelector/ViewSelector';
 
 import images from '../images/images';
 
+const localUrl = 'http://localhost:8000';
+
 export default class GalleryApp extends Component {
     constructor(props) {
         super(props);
@@ -23,6 +25,11 @@ export default class GalleryApp extends Component {
     }
 
     onAdd(image) {
+        // fetch(`${localUrl}/images`, { body: JSON.stringify(image), method: "POST" })
+        //     .then(res => {
+        //         console.log('res is ', res);
+        //         console.log('res json ', res.json)
+        //     })
         this.setState({
             images: this.state.images.concat(image),
         })
@@ -37,7 +44,6 @@ export default class GalleryApp extends Component {
             images: newImages
         })
     }
-
 
     render() {
         return (
