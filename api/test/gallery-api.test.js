@@ -7,6 +7,7 @@ const mongoose = require('mongoose');
 const app = require('../lib/app');
 chai.use(chaiHttp);
 const request = chai.request(app);
+let savedImageId = '';
 
 before(() => mongoose.connection.dropDatabase());
 
@@ -31,10 +32,19 @@ describe('Full Stack Backend', () => {
             .then(images => assert.deepEqual(images, []));
     });
 
+
     it('Add an image to db', () => {
         return saveImage(imageA)
             .then(saveImage => {
+                savedImageId = saveImage._id;
                 assert.isOk(saveImage._id);
+            });
+    });
+
+    it('Delete an image from db', () => {
+        return request.delete(`/${savedImageId}`)
+            .then(res => {
+                assert.deepEqual(res.body, { deleted: true });
             });
     });
 

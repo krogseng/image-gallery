@@ -17,5 +17,11 @@ router
             .then(images =>
                 res.send(images))
             .catch(next);
+    })
+    .delete('/:id', (req, res, next) => {
+        Images.findByIdAndRemove(req.params.id)
+            .then(deleted =>
+                res.send({ deleted: !!deleted }))
+            .catch(next);
     });
 module.exports = router;
