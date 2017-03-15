@@ -10,6 +10,7 @@ const request = chai.request(app);
 let savedImageId = '';
 
 before(() => mongoose.connection.dropDatabase());
+after(() => mongoose.connection.dropDatabase());
 
 let imageA =
     {
@@ -42,7 +43,7 @@ describe('Full Stack Backend', () => {
     });
 
     it('Delete an image from db', () => {
-        return request.delete(`/${savedImageId}`)
+        return request.delete(`/images/${savedImageId}`)
             .then(res => {
                 assert.deepEqual(res.body, { deleted: true });
             });
