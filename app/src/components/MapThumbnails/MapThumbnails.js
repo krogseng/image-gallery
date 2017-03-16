@@ -2,6 +2,7 @@ import React from 'react';
 
 function DisplayThumbnail(props) {
     return (
+
         <li className={'mixedGroup'}>
             <h4>{props.image.title}</h4>
             <img alt={props.image.title} src={props.image.url} height='100px' width='100px' />
@@ -15,9 +16,7 @@ export default function MapThumbnails(props) {
         <div className={'mainContent'}>
             <ul>
                 {props.images.map(image => (
-                    <li key={image.id}>
-                        <DisplayThumbnail image={image} onDelete={props.onDelete} />
-                    </li>
+                    <DisplayThumbnail key={image._id} image={image} onDelete={props.onDelete} />
                 ))}
             </ul>
         </div>

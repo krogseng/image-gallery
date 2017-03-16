@@ -12,7 +12,7 @@ export default class GalleryApp extends Component {
         super(props);
         this.state = {
             viewSelected: 'thumbnail',
-            images: images,
+            images: [],
         }
         this.handleClick = this.handleClick.bind(this);
         this.onAdd = this.onAdd.bind(this);
@@ -25,14 +25,16 @@ export default class GalleryApp extends Component {
     }
 
     onAdd(image) {
-        // fetch(`${localUrl}/images`, { body: JSON.stringify(image), method: "POST" })
-        //     .then(res => {
-        //         console.log('res is ', res);
-        //         console.log('res json ', res.json)
-        //     })
-        this.setState({
-            images: this.state.images.concat(image),
-        })
+        console.log('image', image);
+        fetch(`${localUrl}/images`, { headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(image), method: "POST" })
+            .then(res => {
+                return res.json();
+            })
+            .then((newImage) => {
+                this.setState({
+                    images: this.state.images.concat(newImage),
+                });
+            });
     }
 
     onDelete(toDelete) {
@@ -47,11 +49,11 @@ export default class GalleryApp extends Component {
 
     render() {
         return (
-            <div>
+            <div >
                 <ViewSelector handleClick={this.handleClick} />
                 <AddImage onAdd={this.onAdd} />
                 <ImageView viewSelected={this.state.viewSelected} images={this.state.images} onDelete={this.onDelete} />
-            </div>
+            </div >
         );
     }
 };
