@@ -5,7 +5,7 @@ import ViewSelector from '../ViewSelector/ViewSelector';
 
 import images from '../images/images';
 
-const localUrl = 'http://localhost:8000';
+const localUrl = 'http://localhost:8000/images';
 
 export default class GalleryApp extends Component {
     constructor(props) {
@@ -26,7 +26,7 @@ export default class GalleryApp extends Component {
 
     onAdd(image) {
         console.log('image', image);
-        fetch(`${localUrl}/images`, { headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(image), method: "POST" })
+        fetch(localUrl, { headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(image), method: "POST" })
             .then(res => {
                 return res.json();
             })
@@ -38,13 +38,34 @@ export default class GalleryApp extends Component {
     }
 
     onDelete(toDelete) {
-        let newImages = this.state.images.filter((image) => {
-            if (image.id !== toDelete.id)
-                return image;
+        fetch(`${localUrl}/${toDelete._id}`, { headers: { 'Content-Type': 'application/json' }, method: "DELETE" })
+            .then(res => {
+                return res.json();
+            })
+            .then((res) => {
+                if (res.deleted) {
+                    let newImages = this.state.images.filter((image) => {
+                        if (image._id !== toDelete._id)
+                            return image;
+                    })
+                    this.setState({
+                        images: newImages
+                    })
+                }
+            })
+    }
+
+    componentDidMount() {
+        fetch(localUrl, {
+            headers: { 'Content-Type': 'application/json' },
+            method: "GET"
         })
-        this.setState({
-            images: newImages
-        })
+            .then(res => {
+                return res.json();
+            })
+            .then(images => {
+                this.setState({ images })
+            })
     }
 
     render() {
