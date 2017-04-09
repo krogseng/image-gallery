@@ -1,11 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './App.css';
-import GalleryApp from './GalleryApp';
+import GalleryApp from './components/GalleryApp/GalleryApp';
+import './index.css';
 
 
 ReactDOM.render(
-  <div id='root'>
+  <div>
     < h1 > Welcome to the Gallery</h1 >
     <GalleryApp />
   </div >,
